@@ -1,35 +1,42 @@
-# Smart-Budget-Splitter
+# 🌍 Budget Traveler
 
-Budget Traveler is a web application designed to help users plan their journeys, split travel costs, calculate carbon emissions, and manage their trips effectively. It integrates features like booking tickets, estimating the most cost-effective refueling spots, and tracking carbon emissions based on the vehicle type and number of passengers.
+**Budget Traveler** is a web application designed to help users plan their journeys, split travel costs, calculate carbon emissions, and manage their trips effectively. Whether you're looking to book tickets, find the cheapest fuel stations along your route, or track your carbon footprint, **Budget Traveler** has you covered! 🚗💨
 
-Features
-Journey Splitter: Users can calculate the total cost of their journey and split the costs with others.
+---
 
-Fuel Finder: A smart feature that helps users find the cheapest refueling stations along their journey.
+## 🚀 Features
 
-Carbon Footprint Tracker: Calculates the carbon emissions of the user's journey based on the vehicle used and the number of passengers.
+- **Journey Splitter**: 💸 Split the total cost of your journey with others.
+- **Fuel Finder**: ⛽ Find the cheapest refueling stations along your journey.
+- **Carbon Footprint Tracker**: 🌱 Track your journey’s carbon emissions based on the vehicle used and the number of passengers.
+- **Support**: 📨 Reach out to support for help with any questions or issues.
+- **User Authentication**: 🔐 Sign in with Google for a personalized experience, including journey management and booking.
 
-Support: Provides users with an easy way to contact support for assistance with any queries.
+---
 
-User Authentication: Sign in with Google to access personalized features like booking, tracking, and managing past journeys.
+## 🛠️ Technologies Used
 
-Technologies Used
-Frontend:
+- **Frontend**: 
+  - React.js: For building the interactive user interface.
+  - HTML5 & CSS3: For designing the layout and styling.
+  
+- **Backend**:
+  - Node.js & Express.js: For handling server-side logic and APIs.
+  - Passport.js: For Google OAuth authentication.
 
-React.js for building the user interface.
+- **Database**:
+  - MySQL: For storing user data and journey details.
 
-HTML5, CSS3 for basic web design.
+- **Third-Party Services**:
+  - **EmailJS**: For sending confirmation emails and support responses.
+  - **Google OAuth**: For secure user authentication.
 
-Backend:
+---
 
-Node.js and Express.js for server-side logic and API handling.
+## 📝 Setup
 
-Passport.js for Google OAuth authentication.
+To get started with the development environment:
 
-Database: MySQL for managing user data and journey information.
-
-Third-Party Services:
-
-EmailJS: For sending confirmation and support emails.
-
-Google OAuth: For user authentication through Google.
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/Budget-Traveler.git
