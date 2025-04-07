@@ -1,0 +1,142 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  background: #F4F5FB; /* Light modern background */
+}
+
+/* Content Layout */
+.home-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Map gets more space */
+  gap: 24px; /* Adds spacing between sections */
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  padding-top: 80px;
+}
+
+/* Map Styling */
+.map-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Controls Container */
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.title h3 {
+  font-size: 24px;
+  color: #22177A;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Input Fields */
+.input {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 12px;
+}
+
+.input:focus {
+  border: 1px solid #605EA1;
+  outline: none;
+}
+
+/* Labels for inputs */
+.inputs label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.button {
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(90deg, #605EA1, #8EA3A6);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #8EA3A6, #605EA1);
+}
+
+/* Miles Display */
+.miles-display {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #22177A;
+}
+
+/* Improve spacing between groups */
+.inputs, .buttons {
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-content {
+    grid-template-columns: 1fr; /* Stack elements on smaller screens */
+    gap: 16px;
+  }
+
+  .controls-container {
+    width: 100%;
+  }
+}
+
+/* Dropdown Styling */
+select.input {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 12px;
+}
+
+select.input:focus {
+  border: 1px solid #605EA1;
+  outline: none;
+}

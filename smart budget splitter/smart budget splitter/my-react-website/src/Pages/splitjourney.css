@@ -1,0 +1,176 @@
+/* General container styles */
+.split-journey-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(to right, #f0f2f5, #e4ebf5);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Content wrapper */
+.split-journey-content {
+  width: 100%;
+  max-width: 850px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.split-journey-content:hover {
+  transform: translateY(-2px);
+}
+
+/* Heading styles */
+h2, h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Passenger selection dropdown */
+.passenger-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.passenger-selection label {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.passenger-selection select {
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #d1d1d1;
+  border-radius: 10px;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+  transition: border 0.3s ease;
+}
+
+.passenger-selection select:focus {
+  border-color: #605EA1;
+  outline: none;
+}
+
+/* PayPal Username Input */
+.paypal-username {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.paypal-username input {
+  padding: 12px;
+  border: 2px solid #d1d1d1;
+  border-radius: 10px;
+  width: 80%;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+.paypal-username input:focus {
+  border-color: #605EA1;
+  outline: none;
+}
+
+/* Journey carousel */
+.journey-carousel {
+  margin: 30px 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 15px;
+  scroll-snap-type: x mandatory;
+  justify-content: center;
+}
+
+.carousel-item {
+  min-width: 200px;
+  padding: 20px;
+  background: #ffffff;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-item.selected {
+  border: 3px solid #605EA1;
+  background: #f1f5ff;
+}
+
+/* Passenger details form */
+.passenger-details {
+  display: grid;
+  gap: 15px;
+  margin: 25px 0;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.passenger-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.passenger-entry label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #555;
+}
+
+.passenger-entry input {
+  padding: 12px;
+  border: 2px solid #d1d1d1;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: border 0.3s ease;
+}
+
+.passenger-entry input:focus {
+  border-color: #605EA1;
+  outline: none;
+}
+
+/* Confirm button */
+.confirm-split-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #605EA1, #8EA3A6);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.confirm-split-btn:hover {
+  background: #4a47a3;
+  transform: translateY(-2px);
+}

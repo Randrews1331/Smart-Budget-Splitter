@@ -1,0 +1,293 @@
+/* Main wrapper for the entire calculator */
+.carbon-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
+  margin-top: 75px;
+}
+
+/* General container for the carbon footprint calculator */
+.carbon-container {
+  padding: 1.5rem;
+  width: 65%;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Title styling */
+.carbon-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Common label styling */
+.carbon-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Input field styles */
+.carbon-input-field, .carbon-select {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Button styling */
+.calculate-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.calculate-btn:hover {
+  background-color: #218838;
+}
+
+/* Vehicle selection styling */
+.vehicle-options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.vehicle-option {
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-color: #f8f9fa;
+}
+
+/* Enhanced selected state with black border */
+.vehicle-option.selected {
+  transform: scale(1.05);
+  border: 2px solid #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #e9ecef;
+}
+
+.vehicle-option:hover {
+  transform: scale(1.05);
+  background-color: #e9ecef;
+}
+
+.vehicle-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-option p {
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+/* Radio button group styles */
+.carbon-radio-group {
+  margin-top: 0.5rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+/* Result Container - takes up the right side */
+.carbon-result-container {
+  width: 30%;
+}
+
+/* Result Box Styling */
+.carbon-result-box {
+  background-color: #f1f1f1;
+  padding: 2rem;
+  border-radius: 6px;
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.carbon-result-box.empty {
+  background-color: #f9f9f9;
+  color: #888;
+  text-align: center;
+}
+
+.carbon-result-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.carbon-result-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+  margin-bottom: 1rem;
+}
+
+.result-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+/* Journey selector styles */
+.journey-selector {
+  position: relative;
+}
+
+.journey-select-btn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.journey-select-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.journey-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.journey-option {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.journey-option:last-child {
+  border-bottom: none;
+}
+
+.journey-option:hover {
+  background-color: #f5f5f5;
+}
+
+.journey-option-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.journey-locations {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.journey-distance {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.journey-option-date {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.journey-loading, .journey-error, .no-journeys {
+  padding: 1rem;
+  text-align: center;
+  color: #666;
+}
+
+.journey-error {
+  color: #e74c3c;
+}
+
+/* Clear journey button */
+.clear-journey-btn {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.clear-journey-btn:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+/* Journey details in results */
+.journey-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  text-align: center;
+}
+
+.journey-route {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.journey-date {
+  color: #666;
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carbon-wrapper {
+    flex-direction: column;
+  }
+  
+  .carbon-container,
+  .carbon-result-container {
+    width: 100%;
+  }
+}

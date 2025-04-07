@@ -1,0 +1,106 @@
+/* Main container for the login page */
+.login-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #22177A, #605EA1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Bubbles */
+  .bubble {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #8EA3A6;
+    border-radius: 50%;
+    opacity: 0.7;
+    will-change: top, left; /* Optimize animation performance */
+  }
+  
+  /* Login box */
+  .login-box {
+    position: relative;
+    z-index: 1; /* Ensure it sits above the bubbles */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+  }
+  
+  /* Login title */
+  .login-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Login button */
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #E6E9AF;
+    color: #22177A;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #8EA3A6;
+  }
+  
+  /* Additional text */
+  .login-text {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .login-text a {
+    color: #E6E9AF;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-text a:hover {
+    text-decoration: underline;
+  }
+  /* Ensure no outline around the login page */
+body, html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  background: #F4F5FB; /* Same background as the home page */
+}
+
+* {
+  box-sizing: border-box; /* Prevent unwanted padding or margins */
+}
+
+/* Remove white border on the login container */
+.login-container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
