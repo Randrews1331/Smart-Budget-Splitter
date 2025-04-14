@@ -36,7 +36,7 @@
 🔒 Commit History Notice
 ⚠️ Note on Commit History
 This project was cloned from a private repository to ensure security and protect sensitive data. As a result, the public version does not contain the full commit history.
-If you're interested in reviewing the commit history or need additional context on past code changes, feel free to reach out via email at youremail@example.com and I’d be happy to provide the details.
+If you're interested in reviewing the commit history or need additional context on past code changes, feel free to reach out via email at randrews133@gmail.com and I’d be happy to provide the details.
 
 ---
 
