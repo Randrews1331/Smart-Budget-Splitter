@@ -4,74 +4,73 @@ import axios from 'axios';
 import NavBar from '../Components/NavBar';
 import './home.css';
 
-const mapStyle = [
-  {
-    "featureType": "water",
-    "stylers": [
-      { "saturation": 43 },
-      { "lightness": -11 },
-      { "hue": "#0088ff" }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "hue": "#ff0000" },
-      { "saturation": -100 },
-      { "lightness": 99 }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry.stroke",
-    "stylers": [
-      { "color": "#808080" },
-      { "lightness": 54 }
-    ]
-  },
-  {
-    "featureType": "landscape.man_made",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "color": "#ece2d9" }
-    ]
-  },
-  {
-    "featureType": "poi.park",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "color": "#ccdca1" }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      { "color": "#767676" }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      { "color": "#ffffff" }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      { "visibility": "off" }
-    ]
-  },
-  {
-    "featureType": "landscape.natural",
-    "elementType": "geometry.fill",
-    "stylers": [
-      { "visibility": "on" },
-      { "color": "#b8cb93" }
-    ]
-  }
+const mapStyle = [ {
+  "featureType": "water",
+  "stylers": [
+    { "saturation": 43 },
+    { "lightness": -11 },
+    { "hue": "#0088ff" }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "geometry.fill",
+  "stylers": [
+    { "hue": "#ff0000" },
+    { "saturation": -100 },
+    { "lightness": 99 }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "geometry.stroke",
+  "stylers": [
+    { "color": "#808080" },
+    { "lightness": 54 }
+  ]
+},
+{
+  "featureType": "landscape.man_made",
+  "elementType": "geometry.fill",
+  "stylers": [
+    { "color": "#ece2d9" }
+  ]
+},
+{
+  "featureType": "poi.park",
+  "elementType": "geometry.fill",
+  "stylers": [
+    { "color": "#ccdca1" }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "labels.text.fill",
+  "stylers": [
+    { "color": "#767676" }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "labels.text.stroke",
+  "stylers": [
+    { "color": "#ffffff" }
+  ]
+},
+{
+  "featureType": "poi",
+  "stylers": [
+    { "visibility": "off" }
+  ]
+},
+{
+  "featureType": "landscape.natural",
+  "elementType": "geometry.fill",
+  "stylers": [
+    { "visibility": "on" },
+    { "color": "#b8cb93" }
+  ]
+}
 ];
 
 const Home = () => {
@@ -93,7 +92,6 @@ const Home = () => {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [isLoadingUser, setIsLoadingUser] = useState(true);
 
-  // Fetch the authenticated user's session
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -102,7 +100,6 @@ const Home = () => {
           const userData = await response.json();
           setUser(userData);
         } else {
-          console.warn('User not authenticated');
           setUser(null);
         }
       } catch (error) {
@@ -115,31 +112,63 @@ const Home = () => {
     fetchUser();
   }, []);
 
-  // Fetch fuel prices
-  useEffect(() => {
-    const fetchFuelPrices = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/https://storelocator.asda.com/fuel_prices_data.json');
-        const stations = response.data.stations;
-        if (stations.length > 0) {
-          const e10PricePerLiter = stations[0].prices.E10 / 100;
-          setFuelPricePerLiter(e10PricePerLiter);
+  // Convert start location to coordina using Google Geocoding API
+  const getCoordinatesFromAddress = async (address) => {
+    try {
+      const response = await axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+        params: {
+          address,
+          key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
         }
-      } catch (error) {
-        console.error('Error fetching fuel prices:', error);
-        alert('Could not retrieve fuel prices. Please try again later.');
+      });
+
+      if (response.data.status === 'OK') {
+        const location = response.data.results[0].geometry.location;
+        return location;
+      } else {
+        throw new Error('Failed to get coordinates');
       }
-    };
+    } catch (err) {
+      console.error('Error getting coordinates:', err);
+      return null;
+    }
+  };
 
-    fetchFuelPrices();
-  }, []);
+  const fetchFuelPricesNear = async (lat, lng) => {
+    try {
+      const response = await axios.get('http://localhost:8080/https://storelocator.asda.com/fuel_prices_data.json');
+      const stations = response.data.stations;
 
-  const handleCalculateRoute = () => {
+      if (stations.length > 0) {
+        // Find nearest station
+        const nearest = stations.reduce((prev, curr) => {
+          const distPrev = Math.hypot(prev.lat - lat, prev.lng - lng);
+          const distCurr = Math.hypot(curr.lat - lat, curr.lng - lng);
+          return distCurr < distPrev ? curr : prev;
+        });
+
+        const e10PricePerLiter = nearest.prices.E10 / 100;
+        setFuelPricePerLiter(e10PricePerLiter);
+      }
+    } catch (error) {
+      console.error('Error fetching fuel prices:', error);
+      alert('Could not retrieve fuel prices. Please try again later.');
+    }
+  };
+
+  const handleCalculateRoute = async () => {
     if (!start || !end) {
       alert('Please enter both start and end locations.');
       return;
     }
+
     setIsCalculating(true);
+
+    // Get coordinates and fetch local fuel price
+    const coords = await getCoordinatesFromAddress(start);
+    if (coords) {
+      await fetchFuelPricesNear(coords.lat, coords.lng);
+    }
   };
 
   const handleDirectionsCallback = (result, status) => {
@@ -200,10 +229,10 @@ const Home = () => {
       alert('You must be logged in to submit a journey.');
       return;
     }
-  
+
     try {
       const journeyData = {
-        userId: user.id, // Ensure `user.id` is set correctly
+        userId: user.id,
         startLocation: start,
         endLocation: end,
         distance: distanceInMiles,
@@ -211,14 +240,14 @@ const Home = () => {
         fuelCost,
         date: new Date().toISOString(),
       };
-  
+
       const response = await fetch('http://localhost:8081/api/journeys', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify(journeyData),
       });
-  
+
       if (response.ok) {
         alert('Journey details have been submitted successfully!');
       } else {
@@ -230,7 +259,7 @@ const Home = () => {
       alert('An error occurred while submitting the journey.');
     }
   };
-  
+
   return (
     <div className="home-container">
       <NavBar />
@@ -269,20 +298,8 @@ const Home = () => {
                 </div>
               )}
 
-              <input
-                type="text"
-                placeholder="Start Location"
-                value={start}
-                onChange={e => setStart(e.target.value)}
-                className="input"
-              />
-              <input
-                type="text"
-                placeholder="End Location"
-                value={end}
-                onChange={e => setEnd(e.target.value)}
-                className="input"
-              />
+              <input type="text" placeholder="Start Location" value={start} onChange={e => setStart(e.target.value)} className="input" />
+              <input type="text" placeholder="End Location" value={end} onChange={e => setEnd(e.target.value)} className="input" />
 
               <button onClick={handleCalculateRoute} className="button">
                 Calculate Route
@@ -291,13 +308,7 @@ const Home = () => {
               {distance && <h4>Total Distance: {distanceInMiles} miles</h4>}
 
               <label>Enter Your Car's MPG:</label>
-              <input
-                type="number"
-                placeholder="Enter MPG"
-                value={mpgInput}
-                onChange={e => setMpgInput(e.target.value)}
-                className="input"
-              />
+              <input type="number" placeholder="Enter MPG" value={mpgInput} onChange={e => setMpgInput(e.target.value)} className="input" />
 
               <button onClick={handleMpgSubmit} className="button">
                 Submit MPG
