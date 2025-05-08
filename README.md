@@ -46,4 +46,4 @@ To get started with the development environment:
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/Budget-Traveler.git
+   git clone https://github.com/YOUR_USERNAME/Smart-Budget-Splitter.git
